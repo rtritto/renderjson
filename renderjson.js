@@ -61,7 +61,17 @@
 //     .object.syntax ("{", "}")
 //     .array.syntax  ("[", "]")
 
-var module, window, define, renderjson=(function() {
+(function(root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define(function() {
+            return (root.renderjson = factory());
+        });
+    } else if (typeof module === "object" && module.exports) {
+        module.exports = factory();
+    } else {
+        root.renderjson = factory();
+    }
+}(this, function() {
     var themetext = function(/* [class, text]+ */) {
         var spans = [];
         while (arguments.length)
@@ -210,7 +220,4 @@ var module, window, define, renderjson=(function() {
     renderjson.set_property_list(void 0);
     renderjson.set_collapse_msg(function(len) { return len + " item" + (len==1 ? "" : "s") })
     return renderjson;
-})();
-
-if (define) define({renderjson:renderjson})
-else (module||{}).exports = (window||{}).renderjson = renderjson;
+}));
