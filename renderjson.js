@@ -151,11 +151,12 @@ const renderjson=(function() {
         if (isempty(json, options.property_list))
             return themetext(null, my_indent, "object syntax", "{}");
 
-        return disclosure("{", options.collapse_msg(Object.keys(json).length), "}", "object", function () {
+        const keys_raw = Object.keys(json)
+
+        return disclosure("{", options.collapse_msg(keys_raw.length), "}", "object", function () {
             const os = append(span("object"), themetext("object syntax", "{", null, "\n"));
-            let last;
-            for (const k in json) last = k;
-            const keys = options.property_list || Object.keys(json);
+            const last = keys_raw.slice(-1)[0];
+            let keys = options.property_list || keys_raw;
             if (options.sort_objects)
                 keys = keys.sort();
             for (const i in keys) {
