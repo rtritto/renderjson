@@ -86,7 +86,6 @@ const renderjson=(function() {
                                       for (const i in keys) if (Object.hasOwnProperty.call(obj, keys[i])) return false;
                                       return true; }
     const text = function(txt) { return document.createTextNode(txt) };
-    const div = function() { return document.createElement("div") };
     const span = function(classname) { const s = document.createElement("span");
                                      if (classname) s.className = classname;
                                      return s; };
