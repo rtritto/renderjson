@@ -61,7 +61,7 @@
 //     .object.syntax ("{", "}")
 //     .array.syntax  ("[", "]")
 
-var module, window, define, renderjson=(function() {
+var renderjson=(function() {
     var themetext = function(/* [class, text]+ */) {
         var spans = [];
         while (arguments.length)
@@ -212,5 +212,4 @@ var module, window, define, renderjson=(function() {
     return renderjson;
 })();
 
-if (define) define({renderjson:renderjson})
-else (module||{}).exports = (window||{}).renderjson = renderjson;
+export default renderjson;
