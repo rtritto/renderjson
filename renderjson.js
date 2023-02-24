@@ -61,36 +61,36 @@
 //     .object.syntax ("{", "}")
 //     .array.syntax  ("[", "]")
 
-var renderjson=(function() {
-    var themetext = function(/* [class, text]+ */) {
-        var spans = [];
+const renderjson=(function() {
+    const themetext = function(/* [class, text]+ */) {
+        const spans = [];
         while (arguments.length)
             spans.push(append(span(Array.prototype.shift.call(arguments)),
                               text(Array.prototype.shift.call(arguments))));
         return spans;
     };
-    var append = function(/* el, ... */) {
-        var el = Array.prototype.shift.call(arguments);
-        for (var a=0; a<arguments.length; a++)
+    const append = function(/* el, ... */) {
+        const el = Array.prototype.shift.call(arguments);
+        for (let a=0; a<arguments.length; a++)
             if (arguments[a].constructor == Array)
                 append.apply(this, [el].concat(arguments[a]));
             else
                 el.appendChild(arguments[a]);
         return el;
     };
-    var prepend = function(el, child) {
+    const prepend = function(el, child) {
         el.insertBefore(child, el.firstChild);
         return el;
     }
-    var isempty = function(obj, pl) { var keys = pl || Object.keys(obj);
-                                      for (var i in keys) if (Object.hasOwnProperty.call(obj, keys[i])) return false;
+    const isempty = function(obj, pl) { const keys = pl || Object.keys(obj);
+                                      for (const i in keys) if (Object.hasOwnProperty.call(obj, keys[i])) return false;
                                       return true; }
-    var text = function(txt) { return document.createTextNode(txt) };
-    var div = function() { return document.createElement("div") };
-    var span = function(classname) { var s = document.createElement("span");
+    const text = function(txt) { return document.createTextNode(txt) };
+    const div = function() { return document.createElement("div") };
+    const span = function(classname) { const s = document.createElement("span");
                                      if (classname) s.className = classname;
                                      return s; };
-    var A = function A(txt, classname, callback) { var a = document.createElement("a");
+    const A = function A(txt, classname, callback) { const a = document.createElement("a");
                                                    if (classname) a.className = classname;
                                                    a.appendChild(text(txt));
                                                    a.href = '#';
@@ -98,12 +98,12 @@ var renderjson=(function() {
                                                    return a; };
 
     function _renderjson(json, indent, dont_indent, show_level, options) {
-        var my_indent = dont_indent ? "" : indent;
+        const my_indent = dont_indent ? "" : indent;
 
-        var disclosure = function(open, placeholder, close, type, builder) {
-            var content;
-            var empty = span(type);
-            var show = function() { if (!content) append(empty.parentNode,
+        const disclosure = function(open, placeholder, close, type, builder) {
+            let content;
+            const empty = span(type);
+            const show = function() { if (!content) append(empty.parentNode,
                                                          content = prepend(builder(),
                                                                            A(options.hide, "disclosure",
                                                                              function() { content.style.display="none";
@@ -116,7 +116,7 @@ var renderjson=(function() {
                    A(placeholder, null, show),
                    themetext(type+ " syntax", close));
 
-            var el = append(span(), text(my_indent.slice(0,-1)), empty);
+            const el = append(span(), text(my_indent.slice(0,-1)), empty);
             if (show_level > 0 && type != "string")
                 show();
             return el;
@@ -137,8 +137,8 @@ var renderjson=(function() {
             if (json.length == 0) return themetext(null, my_indent, "array syntax", "[]");
 
             return disclosure("[", options.collapse_msg(json.length), "]", "array", function () {
-                var as = append(span("array"), themetext("array syntax", "[", null, "\n"));
-                for (var i=0; i<json.length; i++)
+                const as = append(span("array"), themetext("array syntax", "[", null, "\n"));
+                for (let i=0; i<json.length; i++)
                     append(as,
                            _renderjson(options.replacer.call(json, i, json[i]), indent+"    ", false, show_level-1, options),
                            i != json.length-1 ? themetext("syntax", ",") : [],
@@ -153,13 +153,14 @@ var renderjson=(function() {
             return themetext(null, my_indent, "object syntax", "{}");
 
         return disclosure("{", options.collapse_msg(Object.keys(json).length), "}", "object", function () {
-            var os = append(span("object"), themetext("object syntax", "{", null, "\n"));
-            for (var k in json) var last = k;
-            var keys = options.property_list || Object.keys(json);
+            const os = append(span("object"), themetext("object syntax", "{", null, "\n"));
+            let last;
+            for (const k in json) last = k;
+            const keys = options.property_list || Object.keys(json);
             if (options.sort_objects)
                 keys = keys.sort();
-            for (var i in keys) {
-                var k = keys[i];
+            for (const i in keys) {
+                const k = keys[i];
                 if (!(k in json)) continue;
                 append(os, themetext(null, indent+"    ", "key", '"'+k+'"', "object syntax", ': '),
                        _renderjson(options.replacer.call(json, k, json[k]), indent+"    ", true, show_level-1, options),
@@ -171,11 +172,11 @@ var renderjson=(function() {
         });
     }
 
-    var renderjson = function renderjson(json)
+    const renderjson = function renderjson(json)
     {
-        var options = new Object(renderjson.options);
+        const options = new Object(renderjson.options);
         options.replacer = typeof(options.replacer) == "function" ? options.replacer : function(k,v) { return v; };
-        var pre = append(document.createElement("pre"), _renderjson(json, "", false, options.show_to_level, options));
+        const pre = append(document.createElement("pre"), _renderjson(json, "", false, options.show_to_level, options));
         pre.className = "renderjson";
         return pre;
     }
