@@ -61,7 +61,7 @@
 //     .object.syntax ("{", "}")
 //     .array.syntax  ("[", "]")
 
-const renderjson=(function() {
+export default (function() {
     const themetext = function(/* [class, text]+ */) {
         const spans = [];
         while (arguments.length)
@@ -212,5 +212,3 @@ const renderjson=(function() {
     renderjson.set_collapse_msg(function(len) { return len + " item" + (len==1 ? "" : "s") })
     return renderjson;
 })();
-
-export default renderjson;
