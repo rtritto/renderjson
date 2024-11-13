@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/caldwell/renderjson/issues"
   },
-  "homepage": "http://caldwell.github.io/renderjson"
+  "homepage": "http://caldwell.github.io/renderjson",
+  "files": [
+    "renderjson.mjs"
+  ]
 }
