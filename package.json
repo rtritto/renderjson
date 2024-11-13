@@ -5,17 +5,16 @@
   "exports": "./renderjson.mjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caldwell/renderjson.git"
+    "url": "git+https://github.com/rtritto/renderjson.git"
   },
   "type": "module",
   "keywords": [
     "json",
     "html"
   ],
-  "author": "David Caldwell <david@porkrind.org>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caldwell/renderjson/issues"
+    "url": "https://github.com/rtritto/renderjson/issues"
   },
   "homepage": "http://caldwell.github.io/renderjson",
   "files": [
