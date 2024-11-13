@@ -1,11 +1,11 @@
 {
-  "name": "renderjson",
+  "name": "renderjson-2",
   "version": "1.4.0",
   "description": "Render JSON into collapsible HTML",
   "exports": "./renderjson.mjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rtritto/renderjson.git"
+    "url": "git+https://github.com/rtritto/renderjson-2.git"
   },
   "type": "module",
   "keywords": [
@@ -14,7 +14,7 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rtritto/renderjson/issues"
+    "url": "https://github.com/rtritto/renderjson-2/issues"
   },
   "homepage": "http://caldwell.github.io/renderjson",
   "files": [

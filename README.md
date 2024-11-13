@@ -1,4 +1,4 @@
-Renderjson
+Renderjson 2
 ==========
 
 Render JSON into collapsible, themeable HTML. This library aims to be very
