@@ -1,6 +1,6 @@
 {
   "name": "renderjson-2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Render JSON into collapsible HTML",
   "module": "./renderjson.mjs",
   "exports": "./renderjson.mjs",
