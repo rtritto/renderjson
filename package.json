@@ -2,6 +2,7 @@
   "name": "renderjson-2",
   "version": "2.0.0",
   "description": "Render JSON into collapsible HTML",
+  "module": "./renderjson.mjs",
   "exports": "./renderjson.mjs",
   "repository": {
     "type": "git",
